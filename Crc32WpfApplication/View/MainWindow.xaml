@@ -1,0 +1,42 @@
+﻿<Window x:Class="Crc32WpfApplication.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Crc32WpfApplication"
+        mc:Ignorable="d"
+        Title="Программа подбора контрольной суммы" Height="350" Width="600" 
+        FontFamily="./Font/#PT Mono"  
+        DataContext="{x:Static local:App.MyWindows}" Background="#FFECEAEE">
+    <Grid Margin="5">
+        <!-- Установка строк -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="27"/>
+            <RowDefinition Height="27"/>
+            <RowDefinition Height="27"/>
+            <RowDefinition  />
+        </Grid.RowDefinitions>
+        <!-- Установка столбцов -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width=".75*" />
+            <ColumnDefinition Width=".75*" />
+            <ColumnDefinition Width=".75*" />
+        </Grid.ColumnDefinitions>
+        <Label Content="Корректирующее значение" Grid.Row="0"  Grid.Column="0" HorizontalAlignment="Center"></Label>
+        <Label Content="Текущая CRC-32" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center"></Label>
+        <Label Content="Требуемая CRC-32" Grid.Row="0"  Grid.Column="2" HorizontalAlignment="Center"></Label>
+        <TextBox Text="{Binding Path=LastValue}" Grid.Row="1" Grid.Column="0" Margin="2,0,2,0" 
+                 HorizontalAlignment="Stretch"  VerticalAlignment="Center" TextAlignment="Center"></TextBox>
+        <TextBox Text="{Binding Path=CurrentChecksum}" Grid.Row="1" Grid.Column="1" Margin="2,0,2,0" 
+                 HorizontalAlignment="Stretch"  VerticalAlignment="Center" TextAlignment="Center" ></TextBox>
+        <TextBox Text="{Binding Path=RequiredChecksum}" Grid.Row="1" Grid.Column="2" Margin="2,0,2,0" 
+                 HorizontalAlignment="Stretch"  VerticalAlignment="Center" TextAlignment="Center"></TextBox>
+        <Button Content="Start" Grid.Row="1" Grid.Column="3" Margin="2,1,2,1" Command="{Binding StartCommand}" ></Button>
+        <Label Content="Таблица рассчета CRC-32" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" 
+               HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        <TextBox Text="{Binding Path=TableValue, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                 Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Margin="0"
+                 TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"></TextBox>
+    </Grid>
+</Window>
